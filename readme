@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kganya Royal Funeral Services</title>
+</head>
+<body>
+    <h1>Kganya Royal Funeral Services</h1>
+    <p>Welcome to our Funeral Management System.</p>
+
+    <h2>Modules</h2>
+    <ul>
+        <li>Member & Policy Management</li>
+        <li>Payment Management</li>
+        <li>Funeral Bookings</li>
+        <li>Claims Management</li>
+        <li>Reports & Analytics</li>
+        <li>Admin Dashboard</li>
+    </ul>
+</body>
+</html>
