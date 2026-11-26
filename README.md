@@ -15,13 +15,14 @@ A responsive, front-end marketplace concept for salon discovery and appointment 
 - 15% / 85% price breakdown.
 - Demo booking confirmation.
 - Salon dashboard with locally stored demo bookings and totals.
+- Admin dashboard with platform booking totals and editable GlowBook settlement bank details (demo-only browser storage).
 - Responsive desktop and mobile layout.
 
 ## Run
 Open `index.html` in a browser, or enable GitHub Pages in repository Settings → Pages → Deploy from a branch → `main` → `/ (root)`.
 
 ## Important prototype limitation
-This is a front-end demonstration. It does not process real payments, authenticate users, send notifications, or synchronize salon calendars. Demo bookings are stored in the current browser's localStorage and are not shared between devices.
+This is a front-end demonstration. It does not process real payments, authenticate users, send notifications, or synchronize salon calendars. Demo bookings and prototype bank settings are stored in the current browser's localStorage and are not shared between devices. The admin page is not protected by authentication; do not enter real banking details.
 
 Before accepting real deposits, integrate a South Africa-supported payment provider (for example, PayFast or Peach Payments), a secure backend/database, webhook verification, refunds/cancellations, salon onboarding and payout/reconciliation controls. Confirm the legal and contractual structure for collecting a 15% marketplace commission. Never store card details in this static app.
 
