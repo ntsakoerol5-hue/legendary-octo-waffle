@@ -1,0 +1,12 @@
+project_id = "YOUR_SUPABASE_PROJECT_REF"
+
+[api]
+enabled = true
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enabled = true
+site_url = "https://YOUR_GITHUB_PAGES_DOMAIN"
+additional_redirect_urls = ["http://localhost:5173"]
