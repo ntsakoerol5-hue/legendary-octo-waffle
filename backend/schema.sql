@@ -110,7 +110,10 @@ for select using (
 );
 create policy "customer creates own booking" on public.bookings
 for insert with check (customer_id = auth.uid());
--- Booking status and payment fields must be changed only by trusted server code\n-- after validating ownership, availability and payment-provider webhooks.\ncreate policy "only admins update bookings" on public.bookings\nfor update using (public.is_admin()) with check (public.is_admin());
+-- Booking status and payment fields must be changed only by trusted server code
+-- after validating ownership, availability and payment-provider webhooks.
+create policy "only admins update bookings" on public.bookings
+for update using (public.is_admin()) with check (public.is_admin());
 
 create policy "only admins access settlement accounts" on public.settlement_accounts
 for all using (public.is_admin()) with check (public.is_admin());
