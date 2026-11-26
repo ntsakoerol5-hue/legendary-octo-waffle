@@ -48,3 +48,7 @@ A live launch requires:
 - Settlement: GlowBook's 15% platform amount reconciled separately from the 85% collected by the salon in person
 
 Confirm the legal, tax and contractual structure for collecting marketplace deposits and commissions before accepting money from customers.
+
+
+## Backend integration scaffold (not live yet)
+The `backend/` folder now contains a Supabase client/auth starter, PostgreSQL schema, deployment checklist and PayFast integration contracts. The current static `index.html` is not connected to these modules. No Supabase project, authentication provider, payment merchant account or live webhook has been configured. Follow [backend/DEPLOYMENT.md](backend/DEPLOYMENT.md) and configure your own project credentials before integration. Never commit populated environment files or secret keys.
