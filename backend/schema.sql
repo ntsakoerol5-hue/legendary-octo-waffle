@@ -83,17 +83,15 @@ alter table public.settlement_accounts enable row level security;
 
 create policy "profiles read self or admin" on public.profiles
 for select using (id = auth.uid() or public.is_admin());
-create policy "profiles update self or admin" on public.profiles
-for update using (id = auth.uid() or public.is_admin())
-with check (id = auth.uid() or public.is_admin());
+create policy "only admins update profiles" on public.profiles
+for update using (public.is_admin()) with check (public.is_admin());
 
 create policy "public can view approved salons" on public.salons
 for select using (status = 'approved' or owner_id = auth.uid() or public.is_admin());
 create policy "salon owner submits application" on public.salons
 for insert with check (owner_id = auth.uid());
-create policy "owner or admin updates salon" on public.salons
-for update using (owner_id = auth.uid() or public.is_admin())
-with check (owner_id = auth.uid() or public.is_admin());
+create policy "only admins approve or update salons" on public.salons
+for update using (public.is_admin()) with check (public.is_admin());
 
 create policy "public can view active services of approved salons" on public.services
 for select using (
@@ -112,17 +110,7 @@ for select using (
 );
 create policy "customer creates own booking" on public.bookings
 for insert with check (customer_id = auth.uid());
-create policy "authorized party updates booking" on public.bookings
-for update using (
-  customer_id = auth.uid()
-  or exists (select 1 from public.salons s where s.id = salon_id and s.owner_id = auth.uid())
-  or public.is_admin()
-)
-with check (
-  customer_id = auth.uid()
-  or exists (select 1 from public.salons s where s.id = salon_id and s.owner_id = auth.uid())
-  or public.is_admin()
-);
+-- Booking status and payment fields must be changed only by trusted server code\n-- after validating ownership, availability and payment-provider webhooks.\ncreate policy "only admins update bookings" on public.bookings\nfor update using (public.is_admin()) with check (public.is_admin());
 
 create policy "only admins access settlement accounts" on public.settlement_accounts
 for all using (public.is_admin()) with check (public.is_admin());
