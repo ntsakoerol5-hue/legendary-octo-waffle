@@ -1,0 +1,32 @@
+{
+  "id": "./",
+  "name": "GlowBook — Beauty, booked beautifully",
+  "short_name": "GlowBook",
+  "description": "Discover salons, explore beauty services and manage your appointments with GlowBook.",
+  "lang": "en-ZA",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf8f5",
+  "theme_color": "#17151b",
+  "categories": [
+    "lifestyle",
+    "beauty",
+    "shopping"
+  ],
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
