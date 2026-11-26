@@ -1,54 +1,23 @@
-# GlowBook — Salon Booking Marketplace
+# GlowBook full-stack starter
 
-GlowBook is a responsive salon-discovery and booking marketplace prototype. It demonstrates the customer journey and the administration workflow for a South African salon marketplace.
+Next.js + Supabase starter for the GlowBook salon marketplace.
 
-## Business model
-- A client selects a salon service and submits a booking.
-- The proposed model collects a 15% deposit through GlowBook.
-- The salon collects the remaining 85% directly from the client at the salon.
-- A live launch must collect the deposit through a hosted payment provider and confirm bookings only after a verified payment webhook.
+## Included
+- Salon directory reading approved salons from Supabase
+- Supabase email/password sign-in
+- Protected dashboard route
+- Starter PostgreSQL schema and row-level security policies
+- PayFast checkout and ITN endpoint placeholders that intentionally return HTTP 501 until securely implemented
 
-## Current prototype features
-- Responsive marketplace with salon search and category filters.
-- Service menus, prices and durations.
-- Booking form with date/time selection and 15% / 85% calculation.
-- Demo booking confirmation and booking activity.
-- Salon partner application form.
-- Admin review workflow to approve, reject or reopen salon applications.
-- Approved demo salons appear in the marketplace.
-- Booking management actions: confirm, complete and cancel.
-- Admin sign-in screen and admin dashboard preview.
-- GlowBook settlement bank-detail form with masked account display.
-- Salon dashboard and booking/deposit totals.
+## Run locally
+1. Install Node.js 20+.
+2. Copy `.env.example` to `.env.local` and enter your Supabase project URL and publishable/anon key.
+3. Create a Supabase project and run `supabase/schema.sql` in its SQL editor.
+4. Install dependencies with `npm install`.
+5. Start with `npm run dev`.
 
-## Run
-Open `index.html` in a browser, or enable GitHub Pages in repository Settings → Pages → Deploy from a branch → `main` → `/ (root)`.
+## Important
+This is an implementation starter, not a live payment system. No real payments are enabled. Do not add real bank details until a backend encryption and authorization design has been reviewed. Do not expose `SUPABASE_SERVICE_ROLE_KEY`, PayFast merchant secrets or encryption keys to the browser. The first admin account must be assigned by a trusted private process. Test RLS with separate customer, salon-owner and admin accounts before deployment.
 
-## Important security and payment limitations
-This is still a browser-only prototype. Salon applications, bookings and bank settings are stored in the current browser's localStorage; they are not shared between devices and are not protected by server-side access controls. The admin sign-in screen is a visual demo only: it does not verify credentials. Do not enter real passwords, customer information or bank details. No real payments are taken and no booking is actually confirmed by a payment processor.
-
-A live launch requires:
-1. A secure backend and hosted PostgreSQL database.
-2. Real authentication (e.g. Supabase Auth) with server-enforced administrator, salon-owner and customer roles.
-3. Server-side authorization and row-level security for every private record.
-4. Encrypted-at-rest banking details with access restricted to authorized settlement administrators.
-5. Hosted checkout through a South Africa-supported provider, signed webhook verification, refund/cancellation handling and reconciliation.
-6. Salon identity/business verification, terms, privacy notices and support processes.
-
-## Backend starter
-`backend/schema.sql` is a starter PostgreSQL schema for profiles, salon applications/listings, services, bookings and settlement accounts. It is not deployed or connected to this front end. Review it with a developer/security professional, configure the required database roles and secrets, and test the row-level-security policies before production use.
-
-## Suggested production architecture
-- Front end: React / Next.js
-- Authentication: Supabase Auth or equivalent
-- Database: PostgreSQL with row-level security
-- Payments: hosted checkout + verified webhooks
-- Roles: customer, salon owner, marketplace administrator
-- Booking states: pending deposit, confirmed, completed, cancelled, refunded
-- Settlement: GlowBook's 15% platform amount reconciled separately from the 85% collected by the salon in person
-
-Confirm the legal, tax and contractual structure for collecting marketplace deposits and commissions before accepting money from customers.
-
-
-## Backend integration scaffold (not live yet)
-The `backend/` folder now contains a Supabase client/auth starter, PostgreSQL schema, deployment checklist and PayFast integration contracts. The current static `index.html` is not connected to these modules. No Supabase project, authentication provider, payment merchant account or live webhook has been configured. Follow [backend/DEPLOYMENT.md](backend/DEPLOYMENT.md) and configure your own project credentials before integration. Never commit populated environment files or secret keys.
+## Product rules
+The proposed commercial model is a 15% booking deposit paid through GlowBook, with the remaining 85% paid directly to the salon. The server must calculate and verify both amounts. Confirm the legal, tax and payment-provider terms before launch.
